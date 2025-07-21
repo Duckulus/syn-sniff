@@ -14,7 +14,7 @@ public final class SynSniffPlugin extends JavaPlugin {
 
   @Override
   public void onEnable() {
-    sniffer = SynPacketSniffer.run("lo", 25565);
+    sniffer = SynPacketSniffer.run("lo", getServer().getPort());
     payloadHandler = CachedPayloadHandler.withExpiry(Duration.ofSeconds(20));
     sniffer.registerPayloadHandler(payloadHandler);
 
