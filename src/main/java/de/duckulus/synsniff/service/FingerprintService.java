@@ -4,7 +4,7 @@ import de.duckulus.synsniff.core.SynFingerprint;
 import de.duckulus.synsniff.core.os.OS;
 import org.bukkit.entity.Player;
 
-import java.util.EnumMap;
+import java.util.Map;
 
 public interface FingerprintService {
 
@@ -22,6 +22,6 @@ public interface FingerprintService {
    * @param player A player which is currently online on the server
    * @return A map from each Operating System to a confidence value between 0 and 1
    */
-  EnumMap<OS, Double> predictOperatingSystem(Player player);
+  Map<OS, Double> predictOperatingSystem(Player player);
 
 }

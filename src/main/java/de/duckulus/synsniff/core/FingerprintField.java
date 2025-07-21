@@ -1,6 +1,6 @@
 package de.duckulus.synsniff.core;
 
-import java.util.EnumMap;
+import java.util.Map;
 
 public enum FingerprintField {
   IP_TOTAL_LEN(Integer.class, 5),
@@ -29,7 +29,7 @@ public enum FingerprintField {
   }
 
   @SuppressWarnings("unchecked")
-  public <T> T get(EnumMap<FingerprintField, Object> map) {
+  public <T> T get(Map<FingerprintField, Object> map) {
     if (!map.containsKey(this)) {
       return null;
     }

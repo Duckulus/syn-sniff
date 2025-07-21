@@ -6,11 +6,12 @@ import de.duckulus.synsniff.service.FingerprintService;
 import org.bukkit.entity.Player;
 
 import java.util.EnumMap;
+import java.util.Map;
 
 public abstract class AbstractFingerprintservice implements FingerprintService {
 
   @Override
-  public EnumMap<OS, Double> predictOperatingSystem(Player player) {
+  public Map<OS, Double> predictOperatingSystem(Player player) {
     EnumMap<OS, Double> confidence = new EnumMap<>(OS.class);
     SynFingerprint fp = getFingerprint(player);
     for (OS os : OS.values()) {

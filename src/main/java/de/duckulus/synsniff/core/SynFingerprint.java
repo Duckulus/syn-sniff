@@ -4,10 +4,11 @@ import org.pcap4j.packet.*;
 import org.pcap4j.packet.namednumber.TcpOptionKind;
 
 import java.util.EnumMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public record SynFingerprint(EnumMap<FingerprintField, Object> data) {
+public record SynFingerprint(Map<FingerprintField, Object> data) {
 
   public static SynFingerprint fromHeaders(IpV4Packet.IpV4Header iph, TcpPacket.TcpHeader tcph) {
     EnumMap<FingerprintField, Object> data = new EnumMap<>(FingerprintField.class);
@@ -69,7 +70,7 @@ public record SynFingerprint(EnumMap<FingerprintField, Object> data) {
   }
 
   public static class Builder {
-    private final EnumMap<FingerprintField, Object> data = new EnumMap<>(FingerprintField.class);
+    private final Map<FingerprintField, Object> data = new EnumMap<>(FingerprintField.class);
 
     public Builder ipTotalLen(int totalLen) {
       data.put(FingerprintField.IP_TOTAL_LEN, totalLen);
