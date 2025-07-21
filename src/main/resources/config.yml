@@ -1,0 +1,7 @@
+# syn-sniff configuration
+
+# The name of the network interface to listen on
+# To list all available interfaces run:
+# Linux: ip link show
+# Windows: netsh interface show interface
+interface_name: lo

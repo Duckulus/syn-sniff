@@ -1,5 +1,6 @@
 package de.duckulus.synsniff;
 
+import de.duckulus.synsniff.config.SynSniffConfig;
 import de.duckulus.synsniff.listener.ConnectionListener;
 import de.duckulus.synsniff.sniffing.SynPacketSniffer;
 import de.duckulus.synsniff.sniffing.handler.CachedPayloadHandler;
@@ -14,7 +15,10 @@ public final class SynSniffPlugin extends JavaPlugin {
 
   @Override
   public void onEnable() {
-    sniffer = SynPacketSniffer.run("enp34s0", getServer().getPort());
+    saveDefaultConfig();
+    SynSniffConfig config = SynSniffConfig.fromConfig(getConfig());
+
+    sniffer = SynPacketSniffer.run(config.interfaceName(), getServer().getPort());
     payloadHandler = CachedPayloadHandler.withExpiry(Duration.ofSeconds(20));
     sniffer.registerPayloadHandler(payloadHandler);
 
