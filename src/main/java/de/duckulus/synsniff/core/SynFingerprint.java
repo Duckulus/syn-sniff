@@ -1,37 +1,63 @@
 package de.duckulus.synsniff.core;
 
-import org.pcap4j.packet.*;
-import org.pcap4j.packet.namednumber.TcpOptionKind;
+import org.pcap4j.packet.IpV4Packet;
+import org.pcap4j.packet.TcpPacket;
 
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 public record SynFingerprint(Map<FingerprintField, Object> data) {
 
   public static SynFingerprint fromHeaders(IpV4Packet.IpV4Header iph, TcpPacket.TcpHeader tcph) {
     EnumMap<FingerprintField, Object> data = new EnumMap<>(FingerprintField.class);
 
-    String options = tcph.getOptions().stream().map(opt -> opt.getKind().name()).collect(Collectors.joining("|"));
-
-    data.put(FingerprintField.IP_TOTAL_LEN, iph.getTotalLengthAsInt());
-    data.put(FingerprintField.IP_ID, iph.getIdentificationAsInt());
-    data.put(FingerprintField.IP_TTL, iph.getTtlAsInt());
-
-    data.put(FingerprintField.TCP_OPTIONS, options);
-    data.put(FingerprintField.TCP_OFFSET, tcph.getDataOffsetAsInt());
-    tcph.getOptions().stream().filter(opt -> opt.getKind() == TcpOptionKind.WINDOW_SCALE).findFirst()
-            .ifPresent(opt -> data.put(FingerprintField.TCP_WINDOW_SCALING, ((TcpWindowScaleOption) opt).getShiftCountAsInt()));
-    data.put(FingerprintField.TCP_WINDOW_SIZE, tcph.getWindowAsInt());
-    tcph.getOptions().stream().filter(opt -> opt.getKind() == TcpOptionKind.TIMESTAMPS).findFirst().ifPresent(opt -> {
-      data.put(FingerprintField.TCP_TIMESTAMP, ((TcpTimestampsOption) opt).getTsValue());
-      data.put(FingerprintField.TCP_TIMESTAMP_ECHO_REPLY, ((TcpTimestampsOption) opt).getTsEchoReply());
-    });
-    tcph.getOptions().stream().filter(opt -> opt.getKind() == TcpOptionKind.MAXIMUM_SEGMENT_SIZE).findFirst()
-            .ifPresent(opt -> data.put(FingerprintField.TCP_MSS, ((TcpMaximumSegmentSizeOption) opt).getMaxSegSizeAsInt()));
+    for (FingerprintField field : FingerprintField.values()) {
+      field.extractValue(iph, tcph).ifPresent(value -> data.put(field, value));
+    }
 
     return new SynFingerprint(data);
+  }
+
+  public Optional<Integer> getIpTotalLen() {
+    return FingerprintField.IP_TOTAL_LEN.get(this.data);
+  }
+
+  public Optional<Integer> getIpId() {
+    return FingerprintField.IP_IDENTIFICATION.get(this.data);
+  }
+
+  public Optional<Integer> getIpTtl() {
+    return FingerprintField.IP_TIME_TO_LIVE.get(this.data);
+  }
+
+  public Optional<String> getTcpOptions() {
+    return FingerprintField.TCP_OPTIONS.get(this.data);
+  }
+
+  public Optional<Integer> getTcpOffset() {
+    return FingerprintField.TCP_OFFSET.get(this.data);
+  }
+
+  public Optional<Integer> getTcpWindowScaling() {
+    return FingerprintField.TCP_WINDOW_SCALING.get(this.data);
+  }
+
+  public Optional<Integer> getTcpWindowSize() {
+    return FingerprintField.TCP_WINDOW_SIZE.get(this.data);
+  }
+
+  public Optional<Integer> getTcpTimestamp() {
+    return FingerprintField.TCP_TIMESTAMP.get(this.data);
+  }
+
+  public Optional<Integer> getTcpTimestampEchoReply() {
+    return FingerprintField.TCP_TIMESTAMP_ECHO_REPLY.get(this.data);
+  }
+
+  public Optional<Integer> getTcpMss() {
+    return FingerprintField.TCP_MAXIMUM_SEGMENT_SIZE.get(this.data);
   }
 
   public double matchScore(SynFingerprint other) {
@@ -78,12 +104,12 @@ public record SynFingerprint(Map<FingerprintField, Object> data) {
     }
 
     public Builder ipId(int id) {
-      data.put(FingerprintField.IP_ID, id);
+      data.put(FingerprintField.IP_IDENTIFICATION, id);
       return this;
     }
 
     public Builder ipTtl(int ttl) {
-      data.put(FingerprintField.IP_TTL, ttl);
+      data.put(FingerprintField.IP_TIME_TO_LIVE, ttl);
       return this;
     }
 
@@ -118,7 +144,7 @@ public record SynFingerprint(Map<FingerprintField, Object> data) {
     }
 
     public Builder tcpMss(int mss) {
-      data.put(FingerprintField.TCP_MSS, mss);
+      data.put(FingerprintField.TCP_MAXIMUM_SEGMENT_SIZE, mss);
       return this;
     }
 

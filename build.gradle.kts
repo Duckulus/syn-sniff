@@ -1,12 +1,14 @@
 plugins {
     `java-library`
+    `maven-publish`
     id("io.papermc.paperweight.userdev") version "2.0.0-beta.18"
     id("xyz.jpenilla.run-paper") version "2.3.1"
-    id("com.gradleup.shadow") version "8.3.0"
+    id("de.eldoria.plugin-yml.bukkit") version "0.7.1"
 }
 
 group = "de.duckulus"
 version = "1.0"
+description = "Passive TCP/IP stack fingerprinting for minecraft"
 
 repositories {
     mavenCentral()
@@ -15,10 +17,10 @@ repositories {
 dependencies {
     paperweight.paperDevBundle("1.21.8-R0.1-SNAPSHOT")
 
-    implementation("org.pcap4j:pcap4j-core:1.8.2")
-    implementation("org.pcap4j:pcap4j-packetfactory-static:1.8.2")
+    library("org.pcap4j:pcap4j-core:1.8.2")
+    library("org.pcap4j:pcap4j-packetfactory-static:1.8.2")
 
-    implementation("com.github.ben-manes.caffeine:caffeine:3.2.2")
+    library("com.github.ben-manes.caffeine:caffeine:3.2.0")
 }
 
 
@@ -35,5 +37,22 @@ tasks {
     }
     javadoc {
         options.encoding = Charsets.UTF_8.name()
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+        }
+    }
+}
+
+bukkit {
+    main = "de.duckulus.synsniff.SynSniff"
+    apiVersion = "1.21"
+    permissions {
+        register("synsniff.command-fingerprint") {}
+        register("synsniff.command-predictos") {}
     }
 }

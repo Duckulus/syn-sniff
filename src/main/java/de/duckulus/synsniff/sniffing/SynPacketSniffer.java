@@ -1,6 +1,6 @@
 package de.duckulus.synsniff.sniffing;
 
-import de.duckulus.synsniff.SynSniffPlugin;
+import de.duckulus.synsniff.SynSniff;
 import de.duckulus.synsniff.exception.SynSniffException;
 import de.duckulus.synsniff.sniffing.handler.PayloadHandler;
 import org.pcap4j.core.*;
@@ -31,7 +31,7 @@ public class SynPacketSniffer extends Thread {
     ClassLoader originalClassLoader = null;
     try {
       originalClassLoader = Thread.currentThread().getContextClassLoader();
-      Thread.currentThread().setContextClassLoader(SynSniffPlugin.class.getClassLoader());
+      Thread.currentThread().setContextClassLoader(SynSniff.class.getClassLoader());
       Class.forName(PacketFactories.class.getName());
     } catch (ClassNotFoundException e) {
       throw new RuntimeException(e);

@@ -1,4 +1,4 @@
-package de.duckulus.synsniff.service.impl;
+package de.duckulus.synsniff.api.impl;
 
 import de.duckulus.synsniff.core.SynFingerprint;
 import org.bukkit.entity.Player;
@@ -16,7 +16,7 @@ public class LocalFingerprintService extends AbstractFingerprintservice {
 
   @Override
   public SynFingerprint getFingerprint(Player player) {
-    return fingerprints.get(player.getUniqueId());
+    return fingerprints.getOrDefault(player.getUniqueId(), new SynFingerprint(Map.of()));
   }
 
   public void addFingerprint(UUID uuid, SynFingerprint fingerprint) {

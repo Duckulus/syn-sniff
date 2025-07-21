@@ -1,1 +1,1 @@
-rootProject.name = "syn-sniff"
+rootProject.name = "SynSniff"
