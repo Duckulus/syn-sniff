@@ -22,8 +22,6 @@ public final class SynSniffPlugin extends JavaPlugin {
     saveDefaultConfig();
     SynSniffConfig config = SynSniffConfig.fromConfig(getConfig());
 
-
-
     sniffer = SynPacketSniffer.run(config.interfaceName(), getServer().getPort());
     CachedPayloadHandler payloadHandler = CachedPayloadHandler.withExpiry(Duration.ofSeconds(20));
     sniffer.registerPayloadHandler(payloadHandler);
