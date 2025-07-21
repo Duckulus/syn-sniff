@@ -12,10 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.net.Inet4Address;
 import java.net.InetSocketAddress;
-import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class ConnectionListener implements Listener {
 
