@@ -9,6 +9,12 @@ This can be used to reveal information such as the Operating System or VPN.
 - pcap native library (libpcap, WinPcap, Npcap)
 - Administrator/privileges or [Capabilities (Linux)](#capabilities)
 
+## Usage
+todo
+
+## Developer API
+todo
+
 ## Capabilities
 
 If your server is running Linux you can use this plugin as a non-root user by granting Capabilities to your java executable.
@@ -57,18 +63,3 @@ To verify that it has been recognized you can run:
 ldconfig -p | grep libjli
 ```
 You should be seeing a line of output
-
-
-We can achieve that by adding a file to `/etc/ld.so.conf.d` that contains the path where the library is stored.
-If you are not sure where it the library is stored you can check the output of `ldd /path/to/java`.
-Then just create a file `/etc/ld.so.conf.d/java.conf` with the following content:
-```
-# replace this to the path ldd showed you
-/path/to/jdk/lib 
-```
-
-## Usage
-todo
-
-## Developer API
-todo
