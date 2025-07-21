@@ -1,0 +1,4 @@
+name: fingerprint-test
+version: '1.0'
+main: de.duckulus.synsniff.SynSniffPlugin
+api-version: '1.21'
