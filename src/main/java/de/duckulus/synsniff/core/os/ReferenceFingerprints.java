@@ -1,4 +1,6 @@
-package de.duckulus.synsniff.core;
+package de.duckulus.synsniff.core.os;
+
+import de.duckulus.synsniff.core.SynFingerprint;
 
 public class ReferenceFingerprints {
 
