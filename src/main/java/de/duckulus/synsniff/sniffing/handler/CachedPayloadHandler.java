@@ -36,7 +36,7 @@ public class CachedPayloadHandler implements PayloadHandler {
     IpV4Packet.IpV4Header iph = payload.iph();
     TcpPacket.TcpHeader tcph = payload.tcph();
     ConnectionId cid = new ConnectionId(iph.getSrcAddr(), tcph.getSrcPort().valueAsInt());
-    SynFingerprint fp = new SynFingerprint(iph.getTtl(), tcph.getSrcPort().valueAsInt());
+    SynFingerprint fp = SynFingerprint.fromHeaders(iph, tcph);
     fingerprintCache.put(cid, fp);
   }
 

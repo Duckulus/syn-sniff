@@ -1,6 +1,7 @@
 package de.duckulus.synsniff.listener;
 
 import com.destroystokyo.paper.profile.PlayerProfile;
+import de.duckulus.synsniff.core.ReferenceFingerprints;
 import de.duckulus.synsniff.core.SynFingerprint;
 import de.duckulus.synsniff.sniffing.handler.CachedPayloadHandler;
 import de.duckulus.synsniff.sniffing.net.ConnectionId;
@@ -41,6 +42,11 @@ public class ConnectionListener implements Listener {
       return;
     }
     log.info("{} joined with fingerprint {}", profile.getName(), fp.get());
+    log.info("Analysis: Linux ({}%), Windows ({}%), Apple ({}%)",
+            ReferenceFingerprints.LINUX.matchScore(fp.get()) * 100,
+            ReferenceFingerprints.WINDOWS.matchScore(fp.get()) * 100,
+            ReferenceFingerprints.APPLE.matchScore(fp.get()) * 100
+    );
   }
 
 }

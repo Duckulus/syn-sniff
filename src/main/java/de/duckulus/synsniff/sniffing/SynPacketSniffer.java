@@ -81,7 +81,7 @@ public class SynPacketSniffer extends Thread {
     int snapshotLength = 65536;
     int readTimeout = 50;
     try {
-      handle = nic.openLive(snapshotLength, PcapNetworkInterface.PromiscuousMode.NONPROMISCUOUS, readTimeout);
+      handle = nic.openLive(snapshotLength, PcapNetworkInterface.PromiscuousMode.PROMISCUOUS, readTimeout);
       handle.setFilter(getPacketFilter(port), BpfProgram.BpfCompileMode.OPTIMIZE);
       PacketListener listener = p -> {
         if (!p.contains(IpV4Packet.class) || !p.contains(TcpPacket.class)) {
@@ -142,7 +142,7 @@ public class SynPacketSniffer extends Thread {
    *
    * @param payloadHandler the handler to be unregistered
    */
-  public void undregisterPayloadHandler(PayloadHandler payloadHandler) {
+  public void unregisterPayloadHandler(PayloadHandler payloadHandler) {
     handlers.remove(payloadHandler);
   }
 
