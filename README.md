@@ -11,7 +11,26 @@ This can be used to reveal information such as the Operating System or VPN.
 - Administrator/privileges or [Capabilities (Linux)](./docs/capabilities.md)
 
 ## Usage
-todo
+
+First make Sure you meet all the [Requirements](#requirements)
+
+### Installation
+1. Download the latest Jar from the [Releases](https://github.com/Duckulus/syn-sniff/releases) page.
+2. Place the `.jar` into your servers `plugins/` directory
+3. Start the server once to generate the default config
+4. Open `plugins/SynSniff/config.yml` and configure the plugin
+5. Restart the Server
+
+### Commands
+
+| Command                 | Description                         | Permission                |
+|-------------------------|-------------------------------------|---------------------------|
+| `/fingerprint <player>` | View raw TCP/IP fingerprint info    | `synsniff.command-fingerprint`    |
+| `/predictos <player>`   | Show the predicted operating system | `synsniff.command-predictos`      |
+
+### Demo
+![Demo](./assets/demo.gif)
+
 
 ## Developer API
 todo

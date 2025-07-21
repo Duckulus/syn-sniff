@@ -6,7 +6,7 @@ plugins {
     id("de.eldoria.plugin-yml.bukkit") version "0.7.1"
 }
 
-group = "de.duckulus"
+group = "io.github.duckulus"
 version = "1.0"
 description = "Passive TCP/IP stack fingerprinting for minecraft"
 
@@ -26,6 +26,8 @@ dependencies {
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(21)
+    withJavadocJar()
+    withSourcesJar()
 }
 
 tasks {
