@@ -36,6 +36,7 @@ This is a known JDK Bug ([JDK-7157699](https://bugs.openjdk.org/browse/JDK-71576
 To fix this we need to make sure the path of `libjli.so` is part of the trusted system library path.
 
 **Step 1: Locate the Library path**
+
 Run the following command to find where Java is looking for shared libraries:
 ```bash
 ldd /path/to/java
@@ -46,6 +47,7 @@ libjli.so => /path/to/jdk/lib/libjli.so
 ```
 
 **Step 2: Register the Path with the linker**
+
 Create a new file under `/etc/ld.so.conf.d/` called `java.conf`
 
 Add the directory containing libjli.so to it:
