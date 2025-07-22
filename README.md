@@ -1,6 +1,9 @@
 
 # `syn-sniff`
 ![Support Discord](https://img.shields.io/discord/850134191232647229?style=flat&label=Support%20Discord&color=%237289da)
+![Maven Central Version](https://img.shields.io/maven-central/v/io.github.duckulus/syn-sniff)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Duckulus/syn-sniff/build.yml)
+
 
 A Paper plugin that passively sniffs TCP/IP SYN packets to give deeper insight into player connections. 
 This can be used to reveal information such as the Operating System or VPN.
@@ -33,7 +36,10 @@ First make Sure you meet all the [Requirements](#requirements)
 
 
 ## Developer API
-todo
+
+We provide a simple API for plugin developers to access fingerprinting data.
+
+Check out the [Wiki](https://github.com/Duckulus/syn-sniff/wiki/) for detailed documentation on installation and usage of the API.
 
 ## Todo
 
