@@ -1,7 +1,7 @@
 
 # `syn-sniff`
-![Support Discord](https://img.shields.io/discord/850134191232647229?style=flat&label=Support%20Discord&color=%237289da)
-![Maven Central Version](https://img.shields.io/maven-central/v/io.github.duckulus/syn-sniff)
+![Support Discord](https://img.shields.io/discord/850134191232647229?style=flat&label=Support%20Discord&color=%237289da&link=https%3A%2F%2Fdiscord.gg%2FAUK3HkFWQ9)
+![Maven Central Version](https://img.shields.io/maven-central/v/io.github.duckulus/syn-sniff?link=https%3A%2F%2Fcentral.sonatype.com%2Fartifact%2Fio.github.duckulus%2Fsyn-sniff%2Foverview)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Duckulus/syn-sniff/build.yml)
 
 
