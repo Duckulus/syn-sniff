@@ -85,7 +85,7 @@ mavenPublishing {
 }
 
 bukkit {
-    main = "de.duckulus.synsniff.SynSniff"
+    main = "io.github.duckulus.synsniff.SynSniff"
     apiVersion = "1.21"
     permissions {
         register("synsniff.command-fingerprint") {}
