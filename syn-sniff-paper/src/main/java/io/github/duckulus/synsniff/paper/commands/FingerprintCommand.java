@@ -1,4 +1,4 @@
-package io.github.duckulus.synsniff.commands;
+package io.github.duckulus.synsniff.paper.commands;
 
 
 import com.mojang.brigadier.Command;
@@ -24,7 +24,7 @@ public class FingerprintCommand {
                       PlayerSelectorArgumentResolver playerSelector = ctx.getArgument("target", PlayerSelectorArgumentResolver.class);
                       Player target = playerSelector.resolve(ctx.getSource()).getFirst();
 
-                      SynFingerprint fp = fingerprintService.getFingerprint(target);
+                      SynFingerprint fp = fingerprintService.getFingerprint(target.getUniqueId());
                       ctx.getSource().getSender().sendRichMessage(Chat.PREFIX + "Fingerprint for <i>" + target.getName() + ":");
 
                       for (FingerprintField field : FingerprintField.values()) {

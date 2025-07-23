@@ -49,6 +49,7 @@ Below is a list of stuff that still needs to be done:
 
 - [ ] More sophisticated OS prediction using more sample Records
 - [ ] Support for IPv6
-- [ ] More modular code structure possibly supporting different kinds of servers
 - [ ] Optional Persistence of Fingerprints
+- [ ] Velocity Support
+- [x] More modular code structure possibly supporting different kinds of servers
 - [x] API for plugin devs

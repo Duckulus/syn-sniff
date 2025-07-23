@@ -1,0 +1,8 @@
+[versions]
+pcap4j = "1.8.2"
+caffeine = "3.2.0"
+
+[libraries]
+pcap4j-core = { module = "org.pcap4j:pcap4j-core", version.ref = "pcap4j" }
+pcap4j-static = { module = "org.pcap4j:pcap4j-packetfactory-static", version.ref = "pcap4j" }
+caffeine = { module = "com.github.ben-manes.caffeine:caffeine", version.ref = "caffeine" }

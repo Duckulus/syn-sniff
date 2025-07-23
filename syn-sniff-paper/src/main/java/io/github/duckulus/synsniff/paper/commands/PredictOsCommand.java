@@ -1,13 +1,13 @@
-package io.github.duckulus.synsniff.commands;
+package io.github.duckulus.synsniff.paper.commands;
 
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.tree.LiteralCommandNode;
+import io.github.duckulus.synsniff.api.FingerprintService;
 import io.github.duckulus.synsniff.core.os.OS;
 import io.github.duckulus.synsniff.misc.Chat;
 import io.github.duckulus.synsniff.misc.Permissions;
 import io.github.duckulus.synsniff.misc.StringUtil;
-import io.github.duckulus.synsniff.api.FingerprintService;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
@@ -27,7 +27,7 @@ public class PredictOsCommand {
                     .executes(ctx -> {
                       PlayerSelectorArgumentResolver playerSelector = ctx.getArgument("target", PlayerSelectorArgumentResolver.class);
                       Player target = playerSelector.resolve(ctx.getSource()).getFirst();
-                      Map<OS, Double> prediction = fingerprintService.getOperatingSystemConfidenceMap(target);
+                      Map<OS, Double> prediction = fingerprintService.getOperatingSystemConfidenceMap(target.getUniqueId());
                       List<OS> sorted = prediction.keySet().stream().sorted(Comparator.comparingDouble((OS os) -> prediction.get(os)).reversed()).toList();
 
                       ctx.getSource().getSender().sendRichMessage("%sOS prediction for <i>%s:".formatted(Chat.PREFIX, target.getName()));

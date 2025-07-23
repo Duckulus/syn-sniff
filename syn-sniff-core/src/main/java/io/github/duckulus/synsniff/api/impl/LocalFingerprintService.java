@@ -1,7 +1,6 @@
 package io.github.duckulus.synsniff.api.impl;
 
 import io.github.duckulus.synsniff.core.SynFingerprint;
-import org.bukkit.entity.Player;
 
 import java.util.Map;
 import java.util.UUID;
@@ -15,8 +14,8 @@ public class LocalFingerprintService extends AbstractFingerprintservice {
   private final Map<UUID, SynFingerprint> fingerprints = new ConcurrentHashMap<>();
 
   @Override
-  public SynFingerprint getFingerprint(Player player) {
-    return fingerprints.getOrDefault(player.getUniqueId(), new SynFingerprint(Map.of()));
+  public SynFingerprint getFingerprint(UUID playerId) {
+    return fingerprints.getOrDefault(playerId, new SynFingerprint(Map.of()));
   }
 
   public void addFingerprint(UUID uuid, SynFingerprint fingerprint) {

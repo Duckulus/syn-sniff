@@ -1,1 +1,5 @@
-rootProject.name = "SynSniff"
+val projectName = "syn-sniff"
+rootProject.name = projectName
+
+include("$projectName-core")
+include("$projectName-paper")

@@ -1,4 +1,4 @@
-package io.github.duckulus.synsniff.listener;
+package io.github.duckulus.synsniff.paper.listener;
 
 import com.destroystokyo.paper.event.player.PlayerConnectionCloseEvent;
 import com.destroystokyo.paper.profile.PlayerProfile;
