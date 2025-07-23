@@ -11,7 +11,7 @@ This can be used to reveal information such as the Operating System or VPN.
 ## Requirements
 - Java 21
 - pcap native library (libpcap, WinPcap, Npcap)
-- Administrator/privileges or [Capabilities (Linux)](./docs/capabilities.md)
+- Administrator privileges or [Capabilities (Linux)](./docs/capabilities.md)
 
 ## Usage
 

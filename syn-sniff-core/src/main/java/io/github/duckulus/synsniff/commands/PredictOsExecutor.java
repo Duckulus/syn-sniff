@@ -16,7 +16,7 @@ public class PredictOsExecutor {
   public static final String COMMAND_NAME = "predictos";
 
   /**
-   * Executed the OS prediction command
+   * Executes the OS prediction command
    *
    * @param sender     the sender of the command
    * @param targetName name of online target
