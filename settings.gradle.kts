@@ -3,3 +3,4 @@ rootProject.name = projectName
 
 include("$projectName-core")
 include("$projectName-paper")
+include("$projectName-velocity")

@@ -7,6 +7,7 @@ import org.pcap4j.core.*;
 import org.pcap4j.packet.IpV4Packet;
 import org.pcap4j.packet.TcpPacket;
 import org.pcap4j.packet.factory.PacketFactories;
+import org.pcap4j.packet.factory.statik.services.StaticPacketFactoryBinderProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,6 +33,7 @@ public class SynPacketSniffer extends Thread {
     try {
       originalClassLoader = Thread.currentThread().getContextClassLoader();
       Thread.currentThread().setContextClassLoader(SynSniff.class.getClassLoader());
+      Class.forName(StaticPacketFactoryBinderProvider.class.getName());
       Class.forName(PacketFactories.class.getName());
     } catch (ClassNotFoundException e) {
       throw new RuntimeException(e);

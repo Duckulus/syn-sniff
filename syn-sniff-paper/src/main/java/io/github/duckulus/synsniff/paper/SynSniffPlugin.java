@@ -13,8 +13,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class SynSniffPlugin extends JavaPlugin {
 
-  private static final String CONFIG_INTERFACE_NAME_KEY = "interface_name";
-
   private SynSniff synSniff;
 
   @Override
@@ -37,7 +35,7 @@ public class SynSniffPlugin extends JavaPlugin {
   private SynSniffConfig loadConfig() {
     FileConfiguration fileConfig = getConfig();
     return new SynSniffConfig(
-            fileConfig.getString(CONFIG_INTERFACE_NAME_KEY, ""),
+            fileConfig.getString(SynSniffConfig.INTERFACE_NAME_NODE, ""),
             getServer().getPort()
     );
   }

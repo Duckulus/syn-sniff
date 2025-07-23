@@ -1,6 +1,6 @@
 plugins {
     `java-library`
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.gradleup.shadow") version "8.3.8"
     id("io.papermc.paperweight.userdev") version "2.0.0-beta.18"
     id("xyz.jpenilla.run-paper") version "2.3.1"
     id("de.eldoria.plugin-yml.bukkit") version "0.7.1"
@@ -11,13 +11,13 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":${rootProject.name}-core"))
+
     paperweight.paperDevBundle("1.21.8-R0.1-SNAPSHOT")
 
     library(libs.pcap4j.core)
     library(libs.pcap4j.static)
     library(libs.caffeine)
-
-    implementation(project(":${rootProject.name}-core"))
 }
 
 java {
