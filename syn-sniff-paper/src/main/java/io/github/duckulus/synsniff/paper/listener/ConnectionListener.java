@@ -7,8 +7,9 @@ import io.github.duckulus.synsniff.core.SynFingerprint;
 import io.github.duckulus.synsniff.sniffing.handler.CachedPayloadHandler;
 import io.github.duckulus.synsniff.sniffing.net.ConnectionId;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,10 +29,10 @@ public class ConnectionListener implements Listener {
     this.localFingerprintService = localFingerprintService;
   }
 
-  @EventHandler
+  @EventHandler(priority = EventPriority.LOWEST)
   @SuppressWarnings("UnstableApiUsage")
-  public void onPreLogin(AsyncPlayerPreLoginEvent event) {
-    InetSocketAddress socketAddr = event.getConnection().getClientAddress();
+  public void onLogin(PlayerJoinEvent event) {
+    InetSocketAddress socketAddr = event.getPlayer().getConnection().getClientAddress();
     if (!(socketAddr.getAddress() instanceof Inet4Address addr)) {
       log.warn("Player tried logging in using IPv6");
       return;
@@ -39,7 +40,7 @@ public class ConnectionListener implements Listener {
     ConnectionId cid = new ConnectionId(addr, socketAddr.getPort());
     Optional<SynFingerprint> fp = payloadHandler.getCachedFingerprint(cid);
 
-    PlayerProfile profile = event.getPlayerProfile();
+    PlayerProfile profile = event.getPlayer().getPlayerProfile();
     if (fp.isEmpty()) {
       log.warn("Could not find fingerprint for {} ({})", profile.getName(), profile.getId());
       return;
