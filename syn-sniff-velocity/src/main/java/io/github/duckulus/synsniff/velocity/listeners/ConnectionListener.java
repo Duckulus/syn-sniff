@@ -2,7 +2,7 @@ package io.github.duckulus.synsniff.velocity.listeners;
 
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.DisconnectEvent;
-import com.velocitypowered.api.event.connection.PreLoginEvent;
+import com.velocitypowered.api.event.connection.LoginEvent;
 import io.github.duckulus.synsniff.api.impl.LocalFingerprintService;
 import io.github.duckulus.synsniff.core.SynFingerprint;
 import io.github.duckulus.synsniff.sniffing.handler.CachedPayloadHandler;
@@ -27,23 +27,23 @@ public class ConnectionListener {
     this.localFingerprintService = localFingerprintService;
   }
 
-  @Subscribe
-  public void onLogin(PreLoginEvent event) {
-    InetSocketAddress socketAddr = event.getConnection().getRemoteAddress();
+  @Subscribe(priority = 10_000)
+  public void onLogin(LoginEvent event) {
+    InetSocketAddress socketAddr = event.getPlayer().getRemoteAddress();
     if (!(socketAddr.getAddress() instanceof Inet4Address addr)) {
       log.warn("Player tried logging in using IPv6");
       return;
     }
     ConnectionId cid = new ConnectionId(addr, socketAddr.getPort());
+    System.out.println(cid);
     Optional<SynFingerprint> fp = payloadHandler.getCachedFingerprint(cid);
 
-    String username = event.getUsername();
-    UUID userId = event.getUniqueId();
+    String username = event.getPlayer().getUsername();
+    UUID userId = event.getPlayer().getUniqueId();
     if (fp.isEmpty()) {
       log.warn("Could not find fingerprint for {} ({})", username, userId);
       return;
     }
-    log.debug("{} joined with fingerprint {}", username, fp);
     localFingerprintService.addFingerprint(userId, fp.get());
   }
 

@@ -1,6 +1,7 @@
 package io.github.duckulus.synsniff.velocity;
 
 import com.google.inject.Inject;
+import com.velocitypowered.api.command.CommandManager;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
@@ -8,9 +9,11 @@ import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
 import io.github.duckulus.synsniff.SynSniff;
 import io.github.duckulus.synsniff.api.impl.LocalFingerprintService;
+import io.github.duckulus.synsniff.commands.PredictOsExecutor;
 import io.github.duckulus.synsniff.config.SynSniffConfig;
 import io.github.duckulus.synsniff.misc.FileUtil;
 import io.github.duckulus.synsniff.sniffing.handler.CachedPayloadHandler;
+import io.github.duckulus.synsniff.velocity.commands.PredictOsCommand;
 import io.github.duckulus.synsniff.velocity.listeners.ConnectionListener;
 import org.slf4j.Logger;
 import org.spongepowered.configurate.CommentedConfigurationNode;
@@ -53,6 +56,10 @@ public class SynSniffVelocityPlugin {
     CachedPayloadHandler payloadHandler = synSniff.payloadHandler();
 
     server.getEventManager().register(this, new ConnectionListener(payloadHandler, fingerprintService));
+
+    CommandManager commandManager = server.getCommandManager();
+    commandManager.register(commandManager.metaBuilder(PredictOsExecutor.COMMAND_NAME).build(),
+            PredictOsCommand.createCommand(server));
   }
 
   @Subscribe

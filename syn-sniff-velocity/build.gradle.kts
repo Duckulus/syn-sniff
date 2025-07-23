@@ -1,3 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer
+
 plugins {
     `java-library`
     id("com.gradleup.shadow") version "8.3.8"
@@ -37,6 +39,8 @@ tasks {
         val shadeBase = "io.github.duckulus.synsniff.shaded"
         relocate("org.pcap4j", "$shadeBase.pcap4j")
         relocate("com.github.benmanes.caffeine", "$shadeBase.caffeine")
+
+        transform(ServiceFileTransformer())
     }
 }
 

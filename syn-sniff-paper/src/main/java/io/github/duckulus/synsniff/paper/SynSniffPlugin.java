@@ -27,7 +27,7 @@ public class SynSniffPlugin extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new ConnectionListener(payloadHandler, fingerprintService), this);
 
     this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
-      commands.registrar().register(PredictOsCommand.createCommand("predictos", fingerprintService));
+      commands.registrar().register(PredictOsCommand.createCommand());
       commands.registrar().register(FingerprintCommand.createCommand("fingerprint", fingerprintService));
     });
   }
