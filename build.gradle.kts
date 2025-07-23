@@ -5,6 +5,6 @@ repositories {
 
 allprojects {
     group = "io.github.duckulus"
-    version = "1.0"
+    version = "1.1"
     description = "Passive TCP/IP stack fingerprinting for minecraft"
 }
