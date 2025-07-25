@@ -35,7 +35,6 @@ public class ConnectionListener {
       return;
     }
     ConnectionId cid = new ConnectionId(addr, socketAddr.getPort());
-    System.out.println(cid);
     Optional<SynFingerprint> fp = payloadHandler.getCachedFingerprint(cid);
 
     String username = event.getPlayer().getUsername();
