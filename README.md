@@ -41,7 +41,7 @@ Otherwise, view [Installation (proxy)](#installation-proxy)
 ⚠️ **Important:** In your config, you must set the correct network interface for your system.
 **This is required for the plugin to work!** You can find interface names using  
 `ip link show` (Linux/macOS) or `netsh interface show interface` (Windows).
-You should the interface your server uses to connect to the internet or local network.
+You should use the interface your server uses to connect to the internet or local network.
 
 ## Installation (proxy)
 
@@ -59,7 +59,7 @@ Otherwise, view [Installation (Without proxy)](#installation-without-proxy)
 ⚠️ **Important:** In your config, you must set the correct network interface for your system.
 **This is required for the plugin to work!** You can find interface names using  
 `ip link show` (Linux/macOS) or `netsh interface show interface` (Windows).
-You should the interface your server uses to connect to the internet or local network.
+You should use the interface your server uses to connect to the internet or local network.
 
 ## Developer API
 
