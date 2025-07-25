@@ -1,7 +1,6 @@
 package io.github.duckulus.synsniff.sniffing;
 
 import io.github.duckulus.synsniff.SynSniff;
-import io.github.duckulus.synsniff.exception.SynSniffException;
 import io.github.duckulus.synsniff.sniffing.handler.PayloadHandler;
 import org.pcap4j.core.*;
 import org.pcap4j.packet.IpV4Packet;
@@ -78,7 +77,8 @@ public class SynPacketSniffer extends Thread {
       return;
     }
     if (nic == null) {
-      throw new SynSniffException("Specified network interface '" + networkInterfaceName + "' not found");
+      log.error("Specified network interface '{}' not found. Did you set the correct interface in config.yml?", networkInterfaceName);
+      return;
     }
     int snapshotLength = 65536;
     int readTimeout = 50;
@@ -101,7 +101,7 @@ public class SynPacketSniffer extends Thread {
       };
       handle.loop(-1, listener, executor);
     } catch (PcapNativeException | NotOpenException e) {
-      throw new RuntimeException(e);
+      log.error("Failed to start capturing on the specified network interface. Did you start the server with elevated privileges?", e);
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
     }

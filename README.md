@@ -38,6 +38,11 @@ Otherwise, view [Installation (proxy)](#installation-proxy)
 4. Open `plugins/SynSniff/config.yml` and configure the plugin
 5. Restart the Server
 
+⚠️ **Important:** In your config, you must set the correct network interface for your system.
+**This is required for the plugin to work!** You can find interface names using  
+`ip link show` (Linux/macOS) or `netsh interface show interface` (Windows).
+You should the interface your server uses to connect to the internet or local network.
+
 ## Installation (proxy)
 
 First make Sure you meet all the [Requirements](#requirements)
@@ -50,6 +55,11 @@ Otherwise, view [Installation (Without proxy)](#installation-without-proxy)
 3. Start the server once to generate the default config
 4. Open `plugins/syn-sniff/config.yml` and configure the plugin
 5. Restart the Server
+
+⚠️ **Important:** In your config, you must set the correct network interface for your system.
+**This is required for the plugin to work!** You can find interface names using  
+`ip link show` (Linux/macOS) or `netsh interface show interface` (Windows).
+You should the interface your server uses to connect to the internet or local network.
 
 ## Developer API
 
